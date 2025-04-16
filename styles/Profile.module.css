@@ -132,6 +132,7 @@
   width: 30%;
   height: 90%;
   border-radius: 12px;
+  overflow: auto;
 }
 
 .collapse {
