@@ -71,9 +71,7 @@ export default function ProfileHero() {
   }
 
   let stylesVignette = {
-    backgroundImage: hero.image.url
-      ? `url(${hero.image.url})`
-      : url("../public/no_hero_picture.png"),
+    backgroundImage: `url(${hero.image.url})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -129,7 +127,8 @@ export default function ProfileHero() {
             <strong>Gender:</strong> {hero.appearance["gender"]}
           </p>
           <p className={styles.collapsePara}>
-            <strong>Race:</strong> {hero.appearance["race"]}
+            <strong>Race:</strong>{" "}
+            {hero.appearance["race"] === "null" ? "-" : hero.appearance["race"]}
           </p>
           <p className={styles.collapsePara}>
             <strong>Height:</strong> {hero.appearance.height[1]}
