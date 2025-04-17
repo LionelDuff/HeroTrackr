@@ -1,5 +1,5 @@
 import { Popover } from "antd";
-import { ConfigProvider, Popconfirm } from "antd";
+import { Popconfirm } from "antd";
 
 import styles from "@/styles/Header.module.css";
 
@@ -101,10 +101,11 @@ export default function Header() {
           color="rgba(255,255,255,0.2)"
           mouseEnterDelay={0.2}
           mouseLeaveDelay={0.2}
+          placement="topLeft"
         >
           <FontAwesomeIcon className={styles.iconFav} icon={faHeart} />
+          <p>Favorites</p>
         </Popover>
-        <p>Favorites</p>
       </div>
     </div>
   );

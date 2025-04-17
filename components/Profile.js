@@ -236,6 +236,7 @@ export default function ProfileHero() {
             items={items}
             defaultActiveKey={["1"]}
             className={styles.collapse}
+            bordered={false}
           />
         </div>
       </div>
