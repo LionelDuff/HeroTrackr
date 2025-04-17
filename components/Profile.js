@@ -77,6 +77,12 @@ export default function ProfileHero() {
     backgroundRepeat: "no-repeat",
   };
 
+  // Function to truncate the string if it exceeds the maximum length
+  // and add "..." at the end
+  function truncate(str, maxlength) {
+    return str.length > maxlength ? str.slice(0, maxlength - 1) + "..." : str;
+  }
+
   // Create a list of progress bars for the hero's power stats
   const listProgress = [];
   for (const data in hero.powerstats) {
@@ -191,7 +197,9 @@ export default function ProfileHero() {
           />
           <div className={styles.title}>
             <h2 className={styles.name}>{hero.name}</h2>
-            <p className={styles.occupation}>{hero.biography["full-name"]}</p>
+            <p className={styles.occupation}>
+              {truncate(hero.biography["full-name"], 30)}
+            </p>
           </div>
           <FontAwesomeIcon
             className={styles.dice}
