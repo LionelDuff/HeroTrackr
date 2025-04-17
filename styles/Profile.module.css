@@ -156,7 +156,7 @@
   border-top: 1px solid rgba(173, 255, 47, 0.6);
 }
 
-@media (max-width: 400px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .containerMainHero {
     align-items: center;
     justify-content: center;

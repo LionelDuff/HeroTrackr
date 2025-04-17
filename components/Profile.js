@@ -16,6 +16,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 import { Progress, Typography, Collapse, Divider, Flex } from "antd";
+import Head from "next/head";
 
 import { addFavorites, removeFavorites } from "@/reducers/favorites";
 import { clickHeroProfile } from "@/reducers/hero";
@@ -183,75 +184,86 @@ export default function ProfileHero() {
   ];
 
   return (
-    <div className={styles.page}>
-      <div className={styles.containerHeader}>
-        <Header />
-      </div>
+    <>
+      <Head>
+        <title>HeroTrackr</title>
+        <meta
+          name="description"
+          content="HeroTrackr — Explore the legends, one hero at a time."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className={styles.page}>
+        <div className={styles.containerHeader}>
+          <Header />
+        </div>
 
-      <div className={styles.containerTitle}>
-        <div className={styles.contentTitle}>
-          <FontAwesomeIcon
-            className={styles.icon}
-            icon={faArrowLeft}
-            onClick={() => router.push("/")}
-          />
-          <div className={styles.title}>
-            <h2 className={styles.name}>{hero.name}</h2>
-            <p className={styles.occupation}>
-              {truncate(hero.biography["full-name"], 30)}
-            </p>
+        <div className={styles.containerTitle}>
+          <div className={styles.contentTitle}>
+            <FontAwesomeIcon
+              className={styles.icon}
+              icon={faArrowLeft}
+              onClick={() => router.push("/")}
+            />
+            <div className={styles.title}>
+              <h2 className={styles.name}>{hero.name}</h2>
+              <p className={styles.occupation}>
+                {truncate(hero.biography["full-name"], 30)}
+              </p>
+            </div>
+            <FontAwesomeIcon
+              className={styles.dice}
+              icon={faDice}
+              onClick={randomHero}
+            />
           </div>
-          <FontAwesomeIcon
-            className={styles.dice}
-            icon={faDice}
-            onClick={randomHero}
-          />
         </div>
+
+        <div className={styles.containerMainHero}>
+          <div style={stylesVignette} className={styles.boxOne}>
+            <FontAwesomeIcon
+              style={styleFavorite}
+              className={styles.iconFav}
+              icon={faHeart}
+              onClick={handleFavoriteClick}
+            />
+          </div>
+
+          <Divider
+            type="vertical"
+            style={{ borderColor: "#7cb305" }}
+            className={styles.divider}
+            variant="dotted"
+          >
+            Solid
+          </Divider>
+
+          <div className={styles.boxTwo}>{listProgress}</div>
+
+          <Divider
+            type="vertical"
+            style={{ borderColor: "#7cb305" }}
+            className={styles.divider}
+            variant="dotted"
+          >
+            Solid
+          </Divider>
+
+          <div className={styles.boxThree}>
+            <Collapse
+              items={items}
+              defaultActiveKey={["1"]}
+              className={styles.collapse}
+              bordered={false}
+            />
+          </div>
+        </div>
+
+        <footer className={styles.containerFooter}>
+          <Footer />
+        </footer>
       </div>
-
-      <div className={styles.containerMainHero}>
-        <div style={stylesVignette} className={styles.boxOne}>
-          <FontAwesomeIcon
-            style={styleFavorite}
-            className={styles.iconFav}
-            icon={faHeart}
-            onClick={handleFavoriteClick}
-          />
-        </div>
-
-        <Divider
-          type="vertical"
-          style={{ borderColor: "#7cb305" }}
-          className={styles.divider}
-          variant="dotted"
-        >
-          Solid
-        </Divider>
-
-        <div className={styles.boxTwo}>{listProgress}</div>
-
-        <Divider
-          type="vertical"
-          style={{ borderColor: "#7cb305" }}
-          className={styles.divider}
-          variant="dotted"
-        >
-          Solid
-        </Divider>
-
-        <div className={styles.boxThree}>
-          <Collapse
-            items={items}
-            defaultActiveKey={["1"]}
-            className={styles.collapse}
-            bordered={false}
-          />
-        </div>
-      </div>
-
-      <footer className={styles.containerFooter}>
-        <Footer />
-      </footer>
-    </div>
+    </>
   );
 }
