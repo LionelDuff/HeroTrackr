@@ -234,7 +234,7 @@ export default function ProfileHero() {
             type="vertical"
             style={{ borderColor: "#7cb305" }}
             className={styles.divider}
-            variant="dotted"
+            variant="solid"
           >
             Solid
           </Divider>
@@ -245,7 +245,7 @@ export default function ProfileHero() {
             type="vertical"
             style={{ borderColor: "#7cb305" }}
             className={styles.divider}
-            variant="dotted"
+            variant="solid"
           >
             Solid
           </Divider>
