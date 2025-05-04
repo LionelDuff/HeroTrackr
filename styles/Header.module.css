@@ -1,0 +1,140 @@
+/* Header styles */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 60px;
+  background-color: black;
+  border-radius: 50px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+}
+
+.title {
+  font-size: 32px;
+}
+
+.color {
+  color: greenyellow;
+}
+
+.iconHeader {
+  font-size: 50px;
+  color: greenyellow;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 10px;
+}
+
+.iconFav {
+  font-size: 20px;
+  color: greenyellow;
+  cursor: pointer;
+}
+
+.popover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding-right: 10px;
+}
+
+.popoverContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.deleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 1);
+  color: greenyellow;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+}
+
+.deleteBtn:hover {
+  border: 2px solid greenyellow;
+  font-size: 20px;
+  transition: all 0.5s ease-in-out;
+}
+
+.vignettePopover {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 75px;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 1);
+  padding: 8px;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 2.5px;
+  margin-top: 2.5px;
+}
+
+.imagePopover {
+  border-radius: 4px;
+  object-fit: cover;
+  cursor: pointer;
+  height: 100%;
+}
+
+.descriptionPopover {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 70px;
+  width: 150px;
+}
+
+.paraPopover1 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.paraPopover2 {
+  border-left: 2px solid greenyellow;
+  font-size: 12px;
+  padding-left: 5px;
+}
+
+.iconPopover {
+  color: greenyellow;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .title {
+    font-size: 24px;
+  }
+  .iconHeader {
+    font-size: 40px;
+  }
+}

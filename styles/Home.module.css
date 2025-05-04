@@ -1,0 +1,101 @@
+.page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../public/pexels-introspectivedsgn-6654177.jpg");
+  background-size: cover;
+  color: white;
+}
+
+.opacity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerHeader {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Description styles */
+.description {
+  display: flex;
+  flex-direction: column;
+  width: 86%;
+  height: 20%;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.desc1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.desc2 {
+  font-size: 20px;
+}
+
+.color {
+  color: greenyellow;
+}
+
+.containerHeroes {
+  width: 100%;
+  height: 63%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerFooter {
+  width: 100%;
+  height: 7%;
+  background-color: black;
+  border-top: 1px solid rgba(173, 255, 47, 0.6);
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  a.primary:hover {
+    background: var(--button-primary-hover);
+    border-color: transparent;
+  }
+
+  a.secondary:hover {
+    background: var(--button-secondary-hover);
+    border-color: transparent;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .desc1 {
+    font-size: 20px;
+  }
+
+  .desc2 {
+    font-size: 15px;
+  }
+}
