@@ -71,10 +71,9 @@ export default function ProfileHero() {
     styleFavorite = { color: "greenYellow", transform: "scale(1.3)" };
   }
 
-  const heroId = hero.id;
-  const nameHero = hero.name.toLowerCase();
-
-  const coverUrl = `https://akabab.github.io/superhero-api/api/images/md/${heroId}-${nameHero}.jpg`;
+  const coverUrl = `https://akabab.github.io/superhero-api/api/images/md/${
+    hero.id
+  }-${hero.name.toLowerCase()}.jpg`;
 
   let stylesVignette = {
     backgroundImage: coverUrl
