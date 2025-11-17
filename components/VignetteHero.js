@@ -13,14 +13,13 @@ export default function VignetteHero(props) {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const imageUrl = props.image.url;
-  const proxiedImageUrl = `/api/proxy-image?url=${encodeURIComponent(
-    imageUrl
-  )}`;
+  const heroId = props.id;
+
+  const coverUrl = `https://akabab.github.io/superhero-api/api/images/md/${heroId}.jpg`;
 
   let stylesVignette = {
     backgroundImage: proxiedImageUrl
-      ? `url(${proxiedImageUrl})`
+      ? `url(${coverUrl})`
       : url("../public/no_hero_picture.png"),
     backgroundSize: "cover",
     backgroundPosition: "center",
