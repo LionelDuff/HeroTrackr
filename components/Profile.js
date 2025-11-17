@@ -73,8 +73,8 @@ export default function ProfileHero() {
   }
 
   const coverUrl = `https://akabab.github.io/superhero-api/api/images/md/${
-    hero.id
-  }-${hero.name.toLowerCase()}.jpg`;
+    mainHero.id
+  }-${mainHero.name.toLowerCase()}.jpg`;
 
   let stylesVignette = {
     backgroundImage: coverUrl
