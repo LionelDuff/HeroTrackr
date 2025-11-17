@@ -5,42 +5,75 @@ export default async function handler(req, res) {
   if (!url) {
     return res
       .status(400)
-      .json({ result: false, error: "Image URL is required" });
+      .json({ result: false, step: "no-url", error: "Image URL is required" });
   }
 
-  // On sécurise un minimum : on n'autorise que les images venant de superherodb.com
   try {
-    const decodedUrl = decodeURIComponent(url);
-    const allowedHost = "www.superherodb.com";
+    const decodedUrl = Array.isArray(url) ? url[0] : url;
+    console.log("proxy-image | decodedUrl:", decodedUrl);
 
-    const { hostname } = new URL(decodedUrl);
-    if (hostname !== allowedHost) {
-      return res
-        .status(400)
-        .json({ result: false, error: "Forbidden image host" });
+    let parsed;
+    try {
+      parsed = new URL(decodedUrl);
+    } catch (e) {
+      console.error("proxy-image | invalid URL:", decodedUrl);
+      return res.status(400).json({
+        result: false,
+        step: "invalid-url",
+        error: "Invalid image URL",
+        debug: decodedUrl,
+      });
     }
 
-    const response = await fetch(decodedUrl);
+    const hostname = parsed.hostname;
+    console.log("proxy-image | hostname:", hostname);
 
-    if (!response.ok) {
-      return res
-        .status(response.status)
-        .json({ result: false, error: "Error fetching image" });
-    }
+    // 💡 Pour le debug, on enlève la restriction d'host
+    // (tu pourras la remettre plus tard si besoin)
 
-    const arrayBuffer = await response.arrayBuffer();
+    const upstream = await fetch(decodedUrl, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36",
+        Accept: "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+        Referer: "https://www.superherodb.com/",
+      },
+    });
 
-    // On passe le bon Content-Type (image/jpeg, image/png, ...)
-    res.setHeader(
-      "Content-Type",
-      response.headers.get("content-type") || "image/jpeg"
+    console.log(
+      "proxy-image | upstream status:",
+      upstream.status,
+      upstream.statusText
     );
-    // Un peu de cache pour éviter de tout re-télécharger à chaque fois
+
+    if (!upstream.ok) {
+      const text = await upstream.text();
+      console.error(
+        "proxy-image | upstream error body (truncated):",
+        text.slice(0, 200)
+      );
+      // On renvoie 502 pour bien marquer que c'est un problème "en amont"
+      return res.status(502).json({
+        result: false,
+        step: "upstream-fetch",
+        upstreamStatus: upstream.status,
+        upstreamStatusText: upstream.statusText,
+      });
+    }
+
+    const arrayBuffer = await upstream.arrayBuffer();
+    const contentType = upstream.headers.get("content-type") || "image/jpeg";
+
+    res.setHeader("Content-Type", contentType);
     res.setHeader("Cache-Control", "public, max-age=86400");
 
-    res.status(200).send(Buffer.from(arrayBuffer));
+    return res.status(200).end(Buffer.from(arrayBuffer));
   } catch (error) {
-    console.error("Error in proxy-image:", error);
-    res.status(500).json({ result: false, error: "Internal server error" });
+    console.error("proxy-image | internal error:", error);
+    return res.status(500).json({
+      result: false,
+      step: "catch",
+      error: "Internal server error",
+    });
   }
 }
