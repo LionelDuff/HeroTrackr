@@ -14,8 +14,9 @@ export default function VignetteHero(props) {
   const dispatch = useDispatch();
 
   const heroId = props.id;
+  const nameHero = props.name.toLowerCase();
 
-  const coverUrl = `https://akabab.github.io/superhero-api/api/images/md/${heroId}.jpg`;
+  const coverUrl = `https://akabab.github.io/superhero-api/api/images/md/${heroId}-${nameHero}.jpg`;
 
   let stylesVignette = {
     backgroundImage: proxiedImageUrl
