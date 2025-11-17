@@ -47,6 +47,7 @@ export default function ProfileHero() {
       .then((data) => {
         if (data.result) {
           dispatch(clickHeroProfile(data.data));
+          setMainHero(data.data);
         }
       })
       .catch((error) => console.error("Error fetching data:", error));
