@@ -13,9 +13,14 @@ export default function VignetteHero(props) {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const imageUrl = props.image.url;
+  const proxiedImageUrl = `/api/proxy-image?url=${encodeURIComponent(
+    imageUrl
+  )}`;
+
   let stylesVignette = {
-    backgroundImage: props.image.url
-      ? `url(${props.image.url})`
+    backgroundImage: proxiedImageUrl
+      ? proxiedImageUrl
       : url("../public/no_hero_picture.png"),
     backgroundSize: "cover",
     backgroundPosition: "center",
