@@ -19,9 +19,7 @@ export default function VignetteHero(props) {
   )}`;
 
   let stylesVignette = {
-    backgroundImage: proxiedImageUrl
-      ? proxiedImageUrl
-      : url("../public/no_hero_picture.png"),
+    backgroundImage: proxiedImageUrl,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
